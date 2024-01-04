@@ -366,7 +366,8 @@ img {
 
 table.imgtable, table.imgtable td {
     border: none;
-    text-align: left;
+    text-align: justify;
+    text-align-last: left;
 }
 
 <style>
