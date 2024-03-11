@@ -9,6 +9,7 @@ table#tlayout {
 body {
 	background: white;
 	font-family: Georgia, serif;
+    font-size:10pt;
     line-height: 24px;
 	padding-bottom: 8px;
     max-width: max-content;
@@ -41,7 +42,7 @@ body {
     background: white;
     text-align: left;
     vertical-align: top;
-    width:900px;
+    width:650px;
 }
 
 #layout-menu a {
@@ -373,7 +374,7 @@ table.imgtable, table.imgtable td {
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 #myBtn {
