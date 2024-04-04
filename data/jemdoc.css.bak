@@ -5,33 +5,15 @@ table#tlayout {
     border-collapse: separate;
     background: white;
 }
-/*
+
 body {
 	background: white;
+	font-family: Georgia, serif;
+    font-size:10pt;
+    line-height: 24px;
 	padding-bottom: 8px;
-	margin: 0;
-}
-*/
-html {
-  background-color: #eeeeee; 
-}
-
-body { 
-  font-family: Georgia, Helvetica, Arial, Verdana, san-serif, Times;
-  color: #000;
-  background-color: #ffffff; 
-  text-align:left; /* for IE */
-  font-size:12pt;
-  margin-top: 30px; 
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left:  50px;
-  padding-right: 50px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-  max-width: 960px;
-  line-height: 24px;
+    max-width: max-content;
+    margin:0 auto;
 }
 
 #layout-menu {
@@ -60,6 +42,7 @@ body {
     background: white;
     text-align: left;
     vertical-align: top;
+    width:650px;
 }
 
 #layout-menu a {
@@ -113,12 +96,12 @@ div.menu-item {
 div#toptitle {
 	padding-bottom: 0.2em;
 	margin-bottom: 1.5em;
-	/*border-bottom: 3px double gray;*/
+	border-bottom: 3px double gray;
 }
 
 /* Reduce space if we begin the page with a title. */
 div#toptitle + h2, div#toptitle + h3 {
-	margin-top: 0em;
+	margin-top: -0.7em;
 }
 
 div#subtitle {
@@ -139,9 +122,8 @@ strong {
 
 h1, h2, h3 {
 	color: #527bbd;
-	text-decoration: none;
 	margin-top: 0.7em;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.3em;
 	padding-bottom: 0.2em;
 	line-height: 1.0;
 	padding-top: 0.5em;
@@ -150,7 +132,6 @@ h1, h2, h3 {
 
 h1 {
 	font-size: 165%;
-	padding-bottom: 0.3em;
 }
 
 h2 {
@@ -171,8 +152,7 @@ p {
 	margin-top: 0.0em;
 	margin-bottom: 0.8em;
 	padding: 0;
-	line-height: 1.55;
-    text-align: justify;
+	line-height: 1.5;
 }
 
 pre {
@@ -229,8 +209,8 @@ p + ul, p + ol {
 	margin-top: -0.5em;
 }
 
-li {
-	margin-top:0.9em;
+li ul, li ol {
+	margin-top: -0.3em;
 }
 
 ol {
@@ -359,6 +339,19 @@ img.eqwl {
 	margin: 0;
 }
 
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 2px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: center;
+    border: 1px solid gray;
+}
+
 table + table {
     margin-top: 1em;
 }
@@ -374,7 +367,14 @@ img {
 
 table.imgtable, table.imgtable td {
     border: none;
-    text-align: left;
+    text-align: justify;
+    text-align-last: left;
+}
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 #myBtn {
