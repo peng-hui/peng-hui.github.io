@@ -4,6 +4,7 @@ table#tlayout {
     border: none;
     border-collapse: separate;
     background: white;
+	border-spacing:0px;
 }
 /*
 body {
@@ -16,6 +17,8 @@ html {
   background-color: #eeeeee; 
 }
 
+
+
 body { 
   font-family: Georgia, Helvetica, Arial, Verdana, san-serif, Times;
   color: #000;
@@ -26,8 +29,8 @@ body {
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding-left:  50px;
-  padding-right: 50px;
+  /* padding-left:  50px;
+  padding-right: 50px; */
   padding-top: 10px;
   padding-bottom: 30px;
   max-width: 960px;
@@ -35,16 +38,22 @@ body {
 }
 
 #layout-menu {
-	background: #f6f6f6;
-	border: 1px solid #dddddd;
-	padding-top: 0.5em;
-	padding-left: 8px;
-	padding-right: 8px;
-	font-size: 1.0em;
-	width: auto;
+	background:white;
+	/* border: 1px solid #dddddd; */
+	font-size: 1.5em;
+	width: 960px;
+	margin: 0 auto;
+	/* left:50px; */
+	padding: 0;
 	white-space: nowrap;
     text-align: left;
     vertical-align: top;
+	/* position: fixed; */
+	left:0;
+	top: 0;
+	display: flex;
+	justify-content: space-around; /* This evenly distributes the menu items */
+    /* align-items: center; Vertically aligns the items */
 }
 
 #layout-menu td {
@@ -106,8 +115,10 @@ div.menu-category {
 }
 
 div.menu-item {
-	padding-left: 16px;
-	text-indent: -16px;
+	/* padding-left: 16px;
+	text-indent: -16px; */
+	flex: 1;
+	text-align: center; /* Center the text inside each menu item */
 }
 
 div#toptitle {
