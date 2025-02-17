@@ -54,8 +54,10 @@ Your program should:
 3. Identify the locations of sink functions like `exec()`.
 4. Determine whether tainted data reaches each sink and report potential vulnerabilities.
 
+You might consider other language features such as branches/conditional statements, loops, etc.
+
 You can use your favoriate programming langauge as you want.
-Please update a single program to [this Google Form](https://forms.gle/PrSDDMJPNTAgn1Ei6).
+Please upload a single program to [this Google Form](https://forms.gle/PrSDDMJPNTAgn1Ei6).
 
 ## Hints
 
@@ -65,7 +67,5 @@ Please update a single program to [this Google Form](https://forms.gle/PrSDDMJPN
 - Function calls: Consider function arguments and return values as potential propagation paths.
 - Identifying sinks: Search for function calls such as exec() and verify if their arguments are tainted.
 
-You might consider other language features such as branches/conditional statements, loops, etc.
 
 Feel free to contact Penghui Li (pl2689@columbia.edu) if you need further clarifications. You can also write down your own assumptions in comments. Good luck, and have fun with the challenge! 
-
