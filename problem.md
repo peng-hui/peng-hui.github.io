@@ -6,7 +6,7 @@ Your goal in this challenge is to build a tool that performs basic static taint 
 
 Static taint analysis is a method used to find security vulnerabilities in software by tracking how data flows through the code without actually running it. It helps identify unsafe data sources (user inputs) and determines whether they reach security-sensitive functions ("sinks") such as `exec()`.
 
-### Example Scenario
+### Example
 
 Consider the following Python code:
 
@@ -18,45 +18,44 @@ cmd = "ls " + user_input  # propagated from user_input to cmd
 ret = foo(cmd) # propagated from cmd to ret
 exec(ret)  # reached to sink
 
+exec(bar(cmd)) # not reached
+
 def foo(x):
     return x
+
+def bar(x):
+    return 0;
 ```
 
 ### Step-by-Step Walkthrough
 
-1. **Identifying tainted sources:**
-
+1. Identifying tainted sources:
    - The `input("Enter command: ")` function call on line 3 introduces tainted data.
    - The variable `user_input` now contains potentially unsafe data.
 
-2. **Tracking propagation:**
-
+2. Tracking propagation:
    - On line 4, `user_input` is used to create a new variable `cmd`. Since `cmd` is constructed using `user_input`, it is also tainted.
    - On line 5, the function `foo(cmd)` is called. Since `cmd` is tainted, `foo`'s return value is also tainted.
 
-3. **Sensitive sink detection:**
-
+3. Sensitive sink detection:
    - The `exec(ret)` function call on line 6 is a sensitive sink. Since `ret` contains tainted data, this represents a potential vulnerability.
+   - On line 8, the function `bar(cmd)` is called and the tainted argument gets sanitized.
 
 ## Task Requirements
-
-To complete this challenge, you need to analyze the following elements:
-
-- **Tainted Sources:** Data inputs that come from `input()` in this case.
-- **Propagation:** How tainted data spreads through assignments and function calls.
-- **Sensitive Sinks:** Functions that can execute tainted data, with `exec()` being the focus in this challenge.
-The output should clearly specify the line numbers of each detected element.
-
-
-Your program should:
+You are asked to write an analyzer program that should output the following:
 1. Identify the line numbers where tainted sources (i.e., `input()`) appear.
-2. Track and list the variables that get tainted.
-3. Identify the locations of sink functions like `exec()`.
-4. Determine whether tainted data reaches each sink and report potential vulnerabilities.
 
-You might consider other language features such as branches/conditional statements, loops, etc.
+2. Track and list the variables that get tainted.
+
+3. Identify the locations of sink functions like `exec()`.
+
+4. Determine whether tainted data reaches each sink (i.e., `exec`)and report potential vulnerabilities.
+
+To earn bonus, you can consider other language features such as branches/conditional statements, loops, etc.
 
 You can use your favoriate programming langauge as you want.
+
+## Submission
 Please upload a single program to [this Google Form](https://forms.gle/PrSDDMJPNTAgn1Ei6).
 
 ## Hints
