@@ -49,22 +49,18 @@ You are asked to write an analyzer program that should output the following:
 
 3. Identify the locations of sink functions like `exec()`.
 
-4. Determine whether tainted data reaches each sink (i.e., `exec`)and report potential vulnerabilities.
+4. Determine whether tainted data reaches each sink (i.e., `exec`) and report potential vulnerabilities.
 
-To earn bonus, you can consider other language features such as branches/conditional statements, loops, etc.
-
-You can use your favoriate programming langauge as you want.
-
-## Submission
-Please upload a single program to [this Google Form](https://forms.gle/PrSDDMJPNTAgn1Ei6).
+5. Bonus: consider taint propagation over conditional statements (i.e., `if`) and loops.
 
 ## Hints
-
 - Parsing the code: Use Python's ast module to parse and analyze the code structure if you are using Python.
 - Tracking taint: Maintain a dictionary to track variables and their taint status.
 - Propagation: Follow assignments and ensure that tainted data is properly traced across variables.
 - Function calls: Consider function arguments and return values as potential propagation paths.
-- Identifying sinks: Search for function calls such as exec() and verify if their arguments are tainted.
+- Identifying sinks: Search for function calls such as `exec()` and verify if their arguments are tainted.
 
+## Submission
+Please upload a single program to [this Google Form](https://forms.gle/PrSDDMJPNTAgn1Ei6). You can use your favoriate programming langauge as you want.
 
 Feel free to contact Penghui Li (pl2689@columbia.edu) if you need further clarifications. You can also write down your own assumptions in comments. Good luck, and have fun with the challenge! 
