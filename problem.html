@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="data/jemdoc.css" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico" />
+<script src="data/seedrandom.mini.js" type="text/javascript"></script>
+<title>Implement a Simple Static Taint Analysis for Python Code</title>
+</head>
+<body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div id="layout-content">
+<div id="toptitle">
+<h1>Implement a Simple Static Taint Analysis for Python Code</h1>
+</div>
+<p>Your goal in this challenge is to build a tool that performs basic static taint analysis for a Python program. The tool should track user inputs (tainted data) as they propagate through assignments and function calls, and identify potential security risks when tainted data reaches sensitive functions.</p>
+<h2>What is Static Taint Analysis?</h2>
+<p>Static taint analysis is a method used to find security vulnerabilities in software by tracking how data flows through the code without actually running it. It helps identify unsafe data sources (user inputs) and determines whether they reach security-sensitive functions (&ldquo;sinks&rdquo;) such as &lsquo;exec()&rsquo;.</p>
+<h3>Example</h3>
+<p>Consider the following Python code:</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+import os
+
+user_input = input("Enter command: ")  # tainted source
+cmd = "ls " + user_input  # propagated from user_input to cmd
+ret = foo(cmd) # propagated from cmd to ret
+exec(ret)  # reached to sink
+
+exec(bar(cmd)) # not reached
+
+def foo(x):
+    return x
+
+def bar(x):
+    return 0;
+</pre></div></div>
+<h3>Step-by-Step Walkthrough</h3>
+<p>1. Identifying tainted sources:</p>
+<ul>
+<li><p>The &lsquo;input()&rsquo; function call on line 3 introduces tainted data.</p>
+</li>
+<li><p>The variable &lsquo;user_input&rsquo; now contains potentially unsafe data.</p>
+</li>
+</ul>
+<p>2. Tracking propagation:</p>
+<ul>
+<li><p>On line 4, &lsquo;user_input&rsquo; is used to create a new variable &lsquo;cmd&rsquo;. Since &lsquo;cmd&rsquo; is constructed using &lsquo;user_input&rsquo;, it is also tainted.</p>
+</li>
+<li><p>On line 5, the function &lsquo;foo(cmd)&rsquo; is called. Since &lsquo;cmd&rsquo; is tainted, &lsquo;foo&rsquo;'s return value is also tainted.</p>
+</li>
+</ul>
+<p>3. Sensitive sink detection:</p>
+<ul>
+<li><p>The &lsquo;exec(ret)&rsquo; function call on line 6 is a sensitive sink. Since &lsquo;ret&rsquo; contains tainted data, this represents a potential vulnerability.</p>
+</li>
+<li><p>On line 8, the function &lsquo;bar(cmd)&rsquo; is called and the tainted argument gets sanitized.</p>
+</li>
+</ul>
+<h2>Task Requirements</h2>
+<p>You are asked to write an analyzer program that should output the following:</p>
+<p>1. Identify the line numbers where tainted sources (i.e., &lsquo;input()&rsquo;) appear.</p>
+<p>2. Track and list the variables that get tainted.</p>
+<p>3. Identify the locations of sink functions like &lsquo;exec()&rsquo;.</p>
+<p>4. Determine whether tainted data reaches each sink (i.e., &lsquo;exec()&rsquo;) and report potential vulnerabilities.</p>
+<p>5. Consider taint propagation over conditional statements (i.e., &lsquo;if&rsquo;) and loops, if possible.</p>
+<h2>Hints</h2>
+<p>1. Parsing the code: use Python's ast module to parse and analyze the code structure if you are using Python.</p>
+<p>2. Propagation: follow assignments and ensure that tainted data is properly traced across variables.</p>
+<p>3. Function calls: fonsider function arguments and return values as potential propagation paths.</p>
+<h2>Submission</h2>
+<p>Please upload a single program to <a href="https://forms.gle/PrSDDMJPNTAgn1Ei6">this Google Form</a>. You can use your favoriate programming langauge as you want.</p>
+<p>Feel free to contact Penghui Li (pl2689@columbia.edu) if you need further clarifications. You can also write down your own assumptions in comments. Good luck, and have fun with the challenge!</p>
+</div>
+<script>
+  let mybutton = document.getElementById("myBtn");
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+</body>
+</html>
