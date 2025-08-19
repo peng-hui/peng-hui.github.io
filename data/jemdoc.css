@@ -453,3 +453,10 @@ table.imgtable, table.imgtable td {
   border-bottom: none;
   font-weight: bold;
 }
+
+.supervisor-note {
+    float: right;
+    font-size: 0.7em;
+    font-weight: normal;
+    color: black;
+}
