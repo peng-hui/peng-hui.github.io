@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="data/jemdoc.css" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico" />
-<title>Implement a Simple Symbolic Execution Engine for Python Code</title>
+<title>Implement a Simple Symbolic Execution Engine for Python Programs</title>
 </head>
 <body>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -21,13 +21,15 @@
 </nav>
 <div id="layout-content">
 <div id="toptitle">
-<h1>Implement a Simple Symbolic Execution Engine for Python Code</h1>
+<h1>Implement a Simple Symbolic Execution Engine for Python Programs</h1>
 </div>
-<p>Your goal in this challenge is to build a tool that performs basic symbolic execution for Python programs, focusing on path exploration and constraint solving to find concrete inputs that can reach each execution path. This challenge may take a few hours to solve.</p>
+<p>Your goal in this challenge is to build a tool that performs basic symbolic execution for Python programs, focusing on path exploration and constraint solving to find concrete inputs that can reach each execution path. </p>
+<p>This challenge may take approximately four hours to solve and is due by <b>the noon of Sept 11 2025</b>. 
+<i>Evaluation follows a first-come, first-served basis, so we strongly encourage early submission to maximize your chances.</i></p>
 <h2>What is Symbolic Execution?</h2>
-<p>Symbolic execution is a program analysis technique that executes a program with symbolic values instead of concrete inputs. Rather than running the program with specific values like &lsquo;x = 5&lsquo;, it uses symbolic variables like &lsquo;x = X&lsquo; and explores all possible execution paths. For each path, it collects the constraints that inputs must satisfy to reach that path, then uses a constraint solver like Z3 to find concrete input values.</p>
+<p><a href="https://en.wikipedia.org/wiki/Symbolic_execution">Symbolic execution</a> is a program analysis technique that executes a program with symbolic values instead of concrete inputs. Rather than running the program with specific values like &lsquo;x = 5&lsquo;, it &ldquo;simulates&rdquo; program execution using symbolic variables like &lsquo;x = X&lsquo; and explores all possible execution paths. For each path, it collects the path constraints that inputs must satisfy to reach that path, then uses a constraint solver like Z3 to find concrete input values.</p>
 <h3>Example</h3>
-<p>Consider the following Python code, the goal is to generate inputs that can execute each of the 3 paths.</p>
+<p>Consider the following Python program, the goal is to generate inputs that can execute each of the 3 paths.</p>
 <div class="codeblock">
 <div class="blockcontent"><pre>
 <span class="statement">def</span> test_function(x, y):
@@ -59,58 +61,17 @@
 <li><p>Path 3: When (X + 1) &lt;= 10</p>
 </li>
 </ul>
-<p>4. Constraint Solving: Use <a href="https://pypi.org/project/z3-solver/">Z3 constraint solver</a> to find concrete values that satisfy each path's constraints</p>
-<h2>Task Requirements</h2>
-<p>Write a tool that can perform symbolic path exploration to collect and solve the constraints for concrete input generation.</p>
-<h3>Input/Output</h3>
-<p>Your program takes as input a python source code file under analysis and outputs the path constraints (against the function parameters) and the corresponding concrete values:</p>
-<div class="codeblock">
-<div class="blockcontent"><pre>
-Found 3 execution paths:
-
-Path 1:
-    Constraints: (x + 1) &gt; 10 &amp;&amp; (y - 2) &lt; 5
-    Concrete input: x = 10, y = 6
-
-Path 2:
-    Constraints: (x + 1) &gt; 10 &amp;&amp; (y - 2) &gt;= 5
-    Concrete input: x = 10, y = 8
-
-Path 3:
-    Constraints: (x + 1) &lt;= 10
-    Concrete input: x = 5, y = 0
-</pre></div></div>
-<p>Note: there may be multiple valid inputs for each path constraint. Z3 will return one satisfying solution - you only need to provide one.</p>
-<h3>Key Features to Implement</h3>
-<p>1. Parse Simple Python Functions: Handle assignments and if-statements with basic operations</p>
-<p>2. Track Variable Assignments: When you see &lsquo;a = x + 1&lsquo;, remember that &lsquo;a&lsquo; represents the symbolic expression &lsquo;x + 1&lsquo;</p>
-<p>3. Collect Path Constraints: For each path, gather all the symbolic constraints (e.g., &lsquo;x + 1 &lt;= 10&lsquo;)</p>
-<p>4. Use Z3 Constraint Solver: Generate concrete input values that satisfy each path's constraints</p>
-<h3>Simplified Scope</h3>
-<p>Focus only on:</p>
-<ul>
-<li><p>Variables: Integer variables with basic assignments</p>
-</li>
-<li><p>Operations: +, -, *, and comparison operators (&lt;, &gt;, &lt;=, &gt;=, ==, !=)  </p>
-</li>
-<li><p>Control Flow: Only if-statements (no loops, no function calls)</p>
-</li>
-<li><p>Goal: Handle simple variable assignments and generate test inputs for full path coverage</p>
-</li>
-</ul>
-<h2>Hints</h2>
-<p>1. Since the input is a source code file, you need to parse the content string into a more structured format. You may try Python's built-in <a href="https://docs.python.org/3/library/ast.html">ast</a> module to parse Python code into an Abstract Syntax Tree (AST).</p>
-<p>2. An example of using python Z3.</p>
+<p>4. Constraint Solving: Use <a href="https://pypi.org/project/z3-solver/">Z3 constraint solver</a> to find concrete values that satisfy each path's constraints. An example of using python <a href="https://pypi.org/project/z3-solver/">Z3 constraint solver</a> is provided below:</p>
 <div class="codeblock">
 <div class="blockcontent"><pre>
 <span class="statement">from</span> z3 <span class="statement">import</span> *
 
-x, y = Int(<span class="string">'x'</span>), Int(<span class="string">'y'</span>)
+X, Y = Int(<span class="string">'x'</span>), Int(<span class="string">'y'</span>)
 solver = Solver()
 
-<span class="comment"># Example: Add constraints <span class="statement">for</span> Path 1: (x+1) &gt; 10 AND (y-2) &lt; 5</span>
-solver.add(x + 1 &gt; 10)
-solver.add(y - 2 &lt; 5)
+<span class="comment"># Example: Add constraints <span class="statement">for</span> Path 1: (X + 1) &gt; 10 &amp;&amp; (Y-2) &lt; 5</span>
+solver.add(X + 1 &gt; 10)
+solver.add(Y - 2 &lt; 5)
 
 <span class="comment"># Check <span class="statement">if</span> constraints are satisfiable</span>
 <span class="statement">if</span> solver.check() == sat:
@@ -119,9 +80,47 @@ solver.add(y - 2 &lt; 5)
 <span class="statement">else</span>:
     <span class="statement">print</span>(<span class="string">"No solution exists (unreachable path)"</span>)
 </pre></div></div>
+<h2>Task Requirements</h2>
+<p>The task is to write a tool that can perform such automated path exploration for Python functions.
+Your tool takes as input a python source code file containing one single function.
+It then analyzes the source code to collect the path constraints (against the function parameters), and accordingly invokes the Z3 solver to generate value assignments to function's parameters.
+Note that there may be multiple valid input choices for a path constraint and you only need to provide one.</p>
+<p>Real-world Python programs can be very complex so in this task focus only on:</p>
+<ul>
+<li><p>Operations: +, -, *, and comparison operators (&lt;, &gt;, &lt;=, &gt;=, ==, !=)  </p>
+</li>
+<li><p>Variables: Integer variables with basic assignments</p>
+</li>
+<li><p>Control Flow: Only if-statements (no loops, no function calls)</p>
+</li>
+</ul>
+<p>Expected output format for the above example:</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+Found 3 execution paths:
+
+Path 1:
+    Constraints: (X + 1) &gt; 10 &amp;&amp; (Y - 2) &lt; 5
+    Concrete input: x = 10, y = 6
+
+Path 2:
+    Constraints: (X + 1) &gt; 10 &amp;&amp; (Y - 2) &gt;= 5
+    Concrete input: x = 10, y = 8
+
+Path 3:
+    Constraints: (X + 1) &lt;= 10
+    Concrete input: x = 5, y = 0
+</pre></div></div>
+<h2>Hints</h2>
+<p>1. Parse Simple Python Functions: Since the input is a source code file, you need to parse the content string into a more structured format. You may try Python's built-in <a href="https://docs.python.org/3/library/ast.html">ast</a> module to parse Python code into an Abstract Syntax Tree (AST).</p>
+<p>2. Track Variable Assignments: When you see &lsquo;a = x + 1&lsquo;, remember that &lsquo;x&lsquo; represents the symbolic variable &lsquo;X&lsquo; so the expression represents &lsquo;X + 1&lsquo;</p>
+<p>3. Collect Path Constraints: at if-statements (both true and false branch)
+</p>
 <h2>Submission</h2>
-<p>Please upload a single program to <a href="https://forms.gle/SZXijv8XgEBeyaJo9">this Google Form</a> on or before Sept 12 2025. We strongly suggest you implement it in python.
-Please name your script in the format &lsquo;[uni].[file-extension]&lsquo;, e.g., &lsquo;pl2689.py&lsquo; and accept one argument the path to the target python file, e.g., &lsquo;python3 pl2689.py target-file.py&lsquo;. Feel free to contact Penghui Li (pl2689@columbia.edu) if you need clarifications. Good luck</p>
+<p>We strongly suggest you implement your solution in Python. Please put everything in one script named as &lsquo;[uni].[file-extension]&lsquo; (e.g., &lsquo;pl2689.py&lsquo;). 
+Your program shall accept one argument the path to the target python file, e.g., &lsquo;python3 pl2689.py target-file.py&lsquo; and print the results on screen.
+Please upload your script to <a href="https://forms.gle/SZXijv8XgEBeyaJo9">this Google Form</a> and provide other necessary information for our consideration.</p>
+<p>Good luck!</p>
 </div>
 <script>
   let mybutton = document.getElementById("myBtn");
