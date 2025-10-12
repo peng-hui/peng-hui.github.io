@@ -455,7 +455,8 @@ table.imgtable, table.imgtable td {
 }
 
 .supervisor-note {
-    float: right;
+    /*float: left;*/
+    margin-left: 10px;
     font-size: 0.7em;
     font-weight: normal;
     color: black;
