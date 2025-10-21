@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="data/jemdoc.css" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico" />
+<title>Project Overview</title>
+</head>
+<body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div id="layout-content">
+<div id="toptitle">
+<h1>Project Overview</h1>
+<div id="subtitle">This project integrates large language models (LLMs) and program analysis to effectively detect software vulnerabilities.</div>
+</div>
+<h2>Motivation</h2>
+<p>Security is a critical aspect of software systems, but vulnerabilities can compromise their integrity. 
+While automated analysis approaches based on static and dynamic program analysis for detecting vulnerabilities have proven effective, they often require extensive human involvement for tasks like defining sources and sinks or drafting graph queries.
+Conversely, LLMs have demonstrated impressive capabilities in code generation and analysis but suffer from challenges like hallucinations and limited input/output token lengths. 
+Bridging these gaps by synergistically integrating the strengths of LLMs and traditional program analysis offers a promising path toward significant advancements in automated vulnerability detection and exploitation.</p>
+<p>The key insight of the project is that the interplays between LLMs and traditional program analysis complement the downside of each approach so that the combination will outperform a simple addition of these two.
+On one hand, LLMs, while prone to hallucinations and token limitations, can benefit from classic program analysis to extract essential information, such as program slices, for detecting and exploiting vulnerabilities;
+at the same time, program analysis can verify and validate the LLMs’ outputs, e.g., whether a given vulnerability found by LLMs exists and is correct. On the other hand, traditional program analysis, which often requires substantial human effort to configure sources, sinks, and graph queries, can be automated and streamlined with the help of LLMs, reducing manual involvement and increasing efficiency.</p>
+<h2>Research Opportunities</h2>
+<h3>Scalable LLM-based Security Analysis with Program Simplification</h3>
+<p>State-of-the-art LLMs struggle to analyze complex programs due to input/output token constraints. For example, the Linux kernel contains millions of lines of code. This project explores program simplification techniques such as program slicing, debloating, and modularization to facilitate LLM-based program analysis.</p>
+<h3>Validatable LLM-based Security Analysis with Synergistic Feedback Loop</h3>
+<p>Due to hallucinations, the output of LLMs might not always be reliable. This project aims to leverage traditional program analysis tools to provide feedback and validate LLM-generated results.</p>
+<h3>LLM-based Query Generation for Static Analysis</h3>
+<p>Query-based static analysis tools like CodeQL and Joern are widely used for identifying security vulnerabilities. However, writing detection queries is a tedious task that can take several months. This project investigates leveraging LLMs to automatically generate CodeQL or Joern queries.</p>
+<h2>Requirement</h2>
+<p>This is a technically challenging project.
+It is necessary to have knowledge in traditional program analysis and/or machine learning models. It also requires strong coding to implement the idea.
+A student is expected to spend 10-12 hours per week for 3-credit research project course.</p>
+</div>
+<script>
+  let mybutton = document.getElementById("myBtn");
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+</body>
+</html>
