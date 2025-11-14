@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="data/jemdoc.css" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico" />
+<title></title>
+</head>
+<body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<nav id="top-nav">
+  <div class="nav-container">
+<a href="index.html" class="nav-brand">Penghui&nbsp;Li</a>
+<div class="nav-links">
+<a href="index.html">Homepage</a>
+<a href="data/cv.pdf">CV</a>
+<a href="index.html#publications">Publications</a>
+<a href="index.html#services">Services</a>
+    </div>
+  </div>
+</nav>
+<div id="layout-content">
+<table class="imgtable"><tr><td>
+<img src="data/phli_cs_2023.jpg" alt="Changsha 2023" width="156px" height="185px" />&nbsp;</td>
+<td align="left"><p><b>Penghui Li</b> <br /></p>
+<p>Postdoctoral Research Scientist</p>
+<p>Columbia University</p>
+<p>Email: pl2689 [at] columbia [dot] edu</p>
+<p><a href="https://scholar.google.com/citations?hl=en&amp;user=DhNOJvgAAAAJ&amp;sortby=pubdate">Google Scholar</a>
+| <a href="https://github.com/peng-hui">GitHub</a> </p>
+</td></tr></table>
+<h2>Bio</h2>
+<p>Penghui Li is a Postdoctoral Research Scientist at Columbia University. 
+His research focuses on software system security and often intersects with software engineering, programming languages, and machine learning.
+He develops rigorous program analysis techniques and autonomous LLM agents to address critical security challenges in vulnerability detection, exploit generation, and runtime defense.
+Penghui has discovered over 300 security vulnerabilities, leading to critical patches in foundational systems such as the Linux kernel, PHP interpreter, and GitHub platform. 
+Penghui's research has been recognized with a Distinguished Paper Award and a Best Paper Honorable Mention at ACM CCS, along with a Distinguished Artifact Award. 
+His service to the community has also been recognized with two Distinguished Reviewer Awards.</p>
+<h2>Application Materials</h2>
+<ul>
+<li><p>CV [<a href="data/cv.pdf">PDF</a>]</p>
+</li>
+<li><p>Research Statement [<a href="data/app/research-statement-Penghui-Li.pdf">PDF</a>]</p>
+</li>
+<li><p>Teaching Statement [<a href="data/app/teaching-statement-Penghui-Li.pdf">PDF</a>]
+
+</p>
+</li>
+</ul>
+<h2>Representative Works <span class="supervisor-note"> <a href="index.html#publications"><span style="font-size: 12pt;">[Full List]</span></a></span></h2>
+<ul>
+<li><p><b>Holistic Concolic Execution for Dynamic Web Applications via Symbolic Interpreter Analysis</b>
+[<a href="data/paper/sp24:sia.pdf">PDF</a>]<br />
+<u>Penghui Li</u>, Wei Meng, Mingxue Zhang, Chenlin Wang, Changhua Luo<br />
+In <i>Proceedings of the 45th IEEE Symposium on Security and Privacy (S&amp;P)</i>, May 2024 <br />
+&#9657;
+This paper presents a new approach that symbolically analyzes the language interpreter to solve the long-standing problem of incomplete syntax support in symbolic execution.
+It reduces the engineering effort from over a year to under two weeks.</p>
+</li>
+</ul>
+<ul>
+<li><p><b>FuzzCache: Optimizing Web Application Fuzzing Through Software-Based Data Cache</b>
+[<a href="data/paper/ccs24:fuzzcache.pdf">PDF</a>]<br />
+<u>Penghui Li</u>, Mingxue Zhang<br />
+In <i>Proceedings of the 31st ACM Conference on Computer and Communications Security (CCS)</i>, October 2024 <br />
+<b><font color="#FF0000">&#9733; Distinguished Paper Award</font></b><br />
+&#9657;
+This paper introduces a systematic optimization for dynamic analysis of web applications that eliminates expensive, repetitive data access.
+The solution is generic and can complement all existing dynamic analysis tools by boosting testing throughput by 4 times.</p>
+</li>
+</ul>
+<ul>
+<li><p><b>SDFuzz: Target States Driven Directed Fuzzing</b>
+[<a href="data/paper/sec24:sdfuzz.pdf">PDF</a>]<br />
+<u>Penghui Li</u>, Wei Meng, Chao Zhang<br />
+In <i>Proceedings of the 33rd USENIX Security Symposium (Security)</i>, August 2024<br />
+&#9657;
+This paper presents a directed fuzzing technique that guides testing toward target program states rather than just code locations. By incorporating both control-flow and data-flow information, it efficiently reaches deep, complex bugs and validates suspected vulnerabilities.</p>
+</li>
+</ul>
+</div>
+<script>
+  let mybutton = document.getElementById("myBtn");
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+</body>
+</html>
